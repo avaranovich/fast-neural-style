@@ -6,11 +6,11 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:jonathonf/python-2.7
 RUN apt-get update
 RUN apt-get install -y python2.7
+RUN apt-get install -y python-dev-all
 
 # Install git, apt-add-repository and dependencies for iTorch
 RUN apt-get update && apt-get install -y \
   git \
-  software-properties-common \
   ipython3 \
   libssl-dev \
   libzmq3-dev \
