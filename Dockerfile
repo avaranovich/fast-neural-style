@@ -14,8 +14,11 @@ RUN apt-get update && apt-get install -y \
   ipython3 \
   libssl-dev \
   libzmq3-dev \
-  python-zmq \
-  python-pip
+  python-zmq #\
+  #python-pip
+
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python get-pip.py
 
 RUN pip install --upgrade pip
 #RUN apt-get install -y python-dev
