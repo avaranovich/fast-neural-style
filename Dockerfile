@@ -4,6 +4,7 @@ FROM ubuntu:14.04
 RUN apt-get update
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:jonathonf/python-2.7
+RUN add-apt-repository -y ppa:ross-kallisti/python-urllib3
 RUN apt-get update
 RUN apt-get install -y python2.7
 RUN apt-get install -y python2.7-dev
@@ -11,17 +12,51 @@ RUN apt-get install -y python2.7-dev
 # Install git, apt-add-repository and dependencies for iTorch
 RUN apt-get update && apt-get install -y \
   git \
-  ipython3 \
+  software-properties-common \
   libssl-dev \
   libzmq3-dev \
-  python-zmq #\
-  #python-pip
+  python-zmq \
+  sudo
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-RUN python get-pip.py
+#RUN apt-get update
+#RUN apt-get install -y software-properties-common
+#RUN add-apt-repository ppa:jonathonf/python-2.7
+#RUN apt-get update
+#RUN apt-get install -y python2.7
+#RUN apt-get install -y python2.7-dev
+#RUN apt-get install -y python-pkg-resources=3.3-1ubuntu1
+#RUN apt-get install -y python-setuptools
+#RUN apt -f install
+#RUN apt -y dist-upgrade
+#RUN apt-get autoremove
+#RUN apt-get update 
+#RUN apt-get upgrade
+#RUN apt-get install -y python-pip
+#RUN apt-get install -y python-dev
+#RUN apt-get install -y build-essential
+
+RUN apt-get update
+RUN apt-get clean
+RUN apt-get autoremove
+RUN apt-get update -y && sudo apt-get dist-upgrade -y
+RUN apt-get install -f libpython2.7-stdlib
+RUN apt-get upgrade -y python-six python-chardet python-urllib3 python-requests
+RUN apt-get install -y python-pip
 
 RUN pip install --upgrade pip
-#RUN apt-get install -y python-dev
+RUN apt-get install -y python-dev
+
+RUN pip install --ignore-installed six
+RUN pip install --ignore-installed pyzmq
+
+# Install git, apt-add-repository and dependencies for iTorch
+RUN apt-get update && apt-get install -y \
+  git \
+  ipython3 \
+  libssl-dev \
+  libzmq3-dev
+
+#RUN pip install 'Tornado>=4.0.0,<5.0.0'
 
 # Install Jupyter Notebook for iTorch
 RUN pip install notebook ipywidgets
