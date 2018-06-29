@@ -1,6 +1,10 @@
 # Start with Ubuntu base image
 FROM ubuntu:14.04
 
+RUN add-apt-repository ppa:jonathonf/python-2.7
+RUN apt-get update
+RUN apt-get install python2.7
+
 # Install git, apt-add-repository and dependencies for iTorch
 RUN apt-get update && apt-get install -y \
   git \
