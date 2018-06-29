@@ -6,7 +6,7 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:jonathonf/python-2.7
 RUN apt-get update
 RUN apt-get install -y python2.7
-RUN apt-get install -y python-dev-all
+RUN apt-get install -y python2.7-dev
 
 # Install git, apt-add-repository and dependencies for iTorch
 RUN apt-get update && apt-get install -y \
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
   python-pip
 
 RUN pip install --upgrade pip
-RUN apt-get install -y python-dev
+#RUN apt-get install -y python-dev
 
 # Install Jupyter Notebook for iTorch
 RUN pip install notebook ipywidgets
