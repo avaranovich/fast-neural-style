@@ -1,6 +1,7 @@
 # Start with Ubuntu base image
 FROM ubuntu:14.04
 
+RUN apt-get install software-properties-common
 RUN add-apt-repository ppa:jonathonf/python-2.7
 RUN apt-get update
 RUN apt-get install python2.7
